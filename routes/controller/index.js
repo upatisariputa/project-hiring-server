@@ -1,5 +1,5 @@
-const models = require('../../models');
 const { User } = require('../../models');
+const { Todo } = require('../../models');
 
 const getUsers = (req, res, next) => {
   User.findAll()
@@ -12,14 +12,20 @@ const getUsers = (req, res, next) => {
     });
 };
 
-const getUser = async ctx => {
-  const { id } = ctx.params;
-
-  const users = await models.User.findOne({ where: { id } });
-  ctx.body = users;
+const getTodo = (req, res, next) => {
+  // console.log(req);
+  const userId = req.params.id;
+  Todo.findAll({ where: { userId } })
+    .then(todos => {
+      res.json(todos);
+    })
+    .catch(err => {
+      console.error(err);
+      next(err);
+    });
 };
 
 module.exports = {
   getUsers,
-  getUser
+  getTodo
 };
