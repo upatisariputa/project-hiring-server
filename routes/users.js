@@ -4,18 +4,9 @@ const { User } = require('../models');
 var router = express.Router();
 
 /* GET users listing. */
-router.get('/', (req, res, next) => {
-  User.findAll()
-    .then(users => {
-      res.json(users);
-    })
-    .catch(err => {
-      console.error(err);
-      next(err);
-    });
-});
+router.get('/', getUsers);
 
-router.get('/users', getUsers);
-router.get('/users/:id', getUser);
+// router.get('/users', getUsers);
+router.get('/:id', getUser);
 
 module.exports = router;

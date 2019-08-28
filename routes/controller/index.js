@@ -1,16 +1,22 @@
 const models = require('../../models');
+const { User } = require('../../models');
 
-const getUsers = async ctx => {
-  const users = await models.User.findAll();
-  console.log(users);
-  ctx.body = users;
+const getUsers = (req, res, next) => {
+  User.findAll()
+    .then(users => {
+      res.json(users);
+    })
+    .catch(err => {
+      console.error(err);
+      next(err);
+    });
 };
 
 const getUser = async ctx => {
+  console.log(ctx);
   const { id } = ctx.params;
 
   const users = await models.User.findOne({ where: { id } });
-  console.log(users);
   ctx.body = users;
 };
 
