@@ -1,10 +1,10 @@
 ##user Data 구현
 
-!(user)[user.jpg]
+![user](user.jpg)
 
 ##todo/:id 구현
 
-!(user)[todo.jpg]
+![todo](todo.jpg)
 
 ### gitignore 구현
 
