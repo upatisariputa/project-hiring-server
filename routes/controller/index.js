@@ -13,7 +13,6 @@ const getUsers = (req, res, next) => {
 };
 
 const getUser = async ctx => {
-  console.log(ctx);
   const { id } = ctx.params;
 
   const users = await models.User.findOne({ where: { id } });
